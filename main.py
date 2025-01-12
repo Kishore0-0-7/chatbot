@@ -1,12 +1,6 @@
 import os
 
 try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    print("python-dotenv not installed. Using environment variables directly.")
-
-try:
     import google.generativeai as gen_ai
 except ImportError:
     import streamlit as st
@@ -22,7 +16,8 @@ st.set_page_config(
     layout="centered",  # Page layout option
 )
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# Direct API key configuration
+GOOGLE_API_KEY = "AIzaSyAuB44r81kNaTBZS28WPVn46eNcnd3dUa8"
 if not GOOGLE_API_KEY:
     st.error("GOOGLE_API_KEY not found. Please set it in your environment variables or .env file.")
     st.stop()
@@ -62,7 +57,7 @@ if "chat_session" not in st.session_state:
 
 
 # Display the chatbot's title on the page
-st.title("🤖 Gemini Pro - ChatBot")
+st.title("🤖 The Care Crew - ChatBot")
 
 # Display the chat history
 for message in st.session_state.chat_session.history:
@@ -70,7 +65,7 @@ for message in st.session_state.chat_session.history:
         st.markdown(message.parts[0].text)
 
 # Input field for user's message
-user_prompt = st.chat_input("Ask Gemini-Pro...")
+user_prompt = st.chat_input("Ask he Care Crew - ChatBot...")
 if user_prompt:
     try:
         # Add user's message to chat and display it
